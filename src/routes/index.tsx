@@ -274,6 +274,7 @@ function About() {
 }
 
 function Equipment() {
+  const [lbIndex, setLbIndex] = useState(-1);
   return (
     <section id="equipment" className="bg-card/40 py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-4">
@@ -283,13 +284,16 @@ function Equipment() {
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
           Real photos from our floor — strength machines, free weights, cardio and an outdoor
-          terrace zone.
+          terrace zone. Tap any image to view fullscreen.
         </p>
         <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {equipment.map((item) => (
-            <div
+          {equipment.map((item, i) => (
+            <button
+              type="button"
               key={item.name}
-              className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-border glow-hover"
+              onClick={() => setLbIndex(i)}
+              aria-label={`View ${item.name} fullscreen`}
+              className="group relative aspect-[4/5] overflow-hidden rounded-lg border border-border glow-hover text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <img
                 src={item.src}
@@ -310,10 +314,15 @@ function Equipment() {
                   {item.caption}
                 </p>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
+      <EquipmentLightbox
+        slides={equipment}
+        index={lbIndex}
+        onClose={() => setLbIndex(-1)}
+      />
     </section>
   );
 }
