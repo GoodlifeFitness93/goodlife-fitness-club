@@ -9,7 +9,9 @@ export const RATING = 4.9;
 export const REVIEW_COUNT = 274;
 export const MAPS_EMBED_SRC =
   "https://www.google.com/maps?q=" +
-  encodeURIComponent("Goodlife Fitness Club, Sai Trade Center, 4th Floor, near BSNL Office, Solapur, Maharashtra 413002") +
+  encodeURIComponent(
+    "Goodlife Fitness Club, Sai Trade Center, 4th Floor, near BSNL Office, Solapur, Maharashtra 413002",
+  ) +
   "&output=embed";
 export const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=" +

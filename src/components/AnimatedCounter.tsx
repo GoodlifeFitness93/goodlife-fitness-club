@@ -7,7 +7,12 @@ interface AnimatedCounterProps {
   duration?: number;
 }
 
-export function AnimatedCounter({ end, decimals = 0, suffix = "", duration = 1500 }: AnimatedCounterProps) {
+export function AnimatedCounter({
+  end,
+  decimals = 0,
+  suffix = "",
+  duration = 1500,
+}: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
   const [value, setValue] = useState(0);
   const started = useRef(false);

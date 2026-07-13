@@ -15,15 +15,15 @@ import {
   Dumbbell,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero-athlete.jpg";
-import chestPressAsset from "@/assets/gym_machines_2.png.asset.json";
-import seatedPressAsset from "@/assets/gym_machines.png.asset.json";
-import plateLoadedAsset from "@/assets/advanced_machines.png.asset.json";
-import strengthZoneAsset from "@/assets/first_section.png.asset.json";
-import cardioAsset from "@/assets/cardio.png.asset.json";
-import functionalRigAsset from "@/assets/cardio_entrance.png.asset.json";
-import dumbbellsAsset from "@/assets/Dumbells.png.asset.json";
-import terraceAsset from "@/assets/terrace_section.png.asset.json";
+import heroImg from "@/assets/hero-athlete-new.png";
+import chestPressAsset from "@/assets/gym machines (2).png";
+import seatedPressAsset from "@/assets/gym machines.png";
+import plateLoadedAsset from "@/assets/advanced machines.png";
+import strengthZoneAsset from "@/assets/first section.png";
+import cardioAsset from "@/assets/cardio.png";
+import functionalRigAsset from "@/assets/cardio entrance.png";
+import dumbbellsAsset from "@/assets/Dumbells.png";
+import terraceAsset from "@/assets/terrace section.png";
 
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
@@ -66,7 +66,15 @@ export const Route = createFileRoute("/")({
           },
           openingHoursSpecification: {
             "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            dayOfWeek: [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+            ],
             opens: "00:00",
             closes: "23:59",
           },
@@ -86,49 +94,49 @@ export const Route = createFileRoute("/")({
 
 const equipment = [
   {
-    src: chestPressAsset.url,
+    src: chestPressAsset,
     name: "Seated Chest Press Station",
     caption: "Build pressing power and upper-body size",
     tag: "Chest",
   },
   {
-    src: seatedPressAsset.url,
+    src: seatedPressAsset,
     name: "Dual-Stack Seated Press Machine",
     caption: "Controlled resistance for safe, heavy pressing",
     tag: "Chest",
   },
   {
-    src: plateLoadedAsset.url,
+    src: plateLoadedAsset,
     name: "Plate-Loaded Strength Machines",
     caption: "Heavy leg and chest pressing with Olympic plates",
     tag: "Legs",
   },
   {
-    src: strengthZoneAsset.url,
+    src: strengthZoneAsset,
     name: "Selectorized Strength Zone",
     caption: "Row, pull and press through full machine circuits",
     tag: "Back",
   },
   {
-    src: cardioAsset.url,
+    src: cardioAsset,
     name: "Treadmills & Spin Bikes",
     caption: "Torch calories and build engine on modern cardio",
     tag: "Cardio",
   },
   {
-    src: functionalRigAsset.url,
+    src: functionalRigAsset,
     name: "Functional Training Rig & Cable Stations",
     caption: "Cables, kettlebells and bodyweight work in one rig",
     tag: "Full Body",
   },
   {
-    src: dumbbellsAsset.url,
+    src: dumbbellsAsset,
     name: "Dumbbell Rack",
     caption: "Full range of fixed dumbbells for free-weight training",
     tag: "Full Body",
   },
   {
-    src: terraceAsset.url,
+    src: terraceAsset,
     name: "Outdoor Terrace Training Zone",
     caption: "Benches and racks under the open sky",
     tag: "Full Body",
@@ -174,7 +182,10 @@ function Nav() {
             GOODLIFE <span className="text-primary">FITNESS CLUB</span>
           </span>
         </a>
-        <a href={TEL_LINK} className="hidden items-center gap-2 font-display text-lg tracking-widest text-foreground transition-colors hover:text-primary md:flex">
+        <a
+          href={TEL_LINK}
+          className="hidden items-center gap-2 font-display text-lg tracking-widest text-foreground transition-colors hover:text-primary md:flex"
+        >
           <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
           {PHONE_DISPLAY}
         </a>
@@ -185,19 +196,19 @@ function Nav() {
 
 function Hero() {
   return (
-    <section
-      id="top"
-      className="relative flex min-h-[100vh] min-h-svh items-end overflow-hidden"
-    >
+    <section id="top" className="relative flex min-h-[100vh] min-h-svh items-end overflow-hidden">
       <img
         src={heroImg}
-        alt="Athlete performing a heavy deadlift in dramatic red and black gym lighting at Goodlife Fitness Club"
+        alt="Focused athlete preparing for a workout in dramatic red and black gym lighting at Goodlife Fitness Club"
         width={1536}
         height={1024}
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover [object-position:center_top] md:[object-position:center]"
+        className="absolute inset-0 h-full w-full object-cover object-center"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20"
+        aria-hidden="true"
+      />
       <div className="relative mx-auto w-full max-w-6xl px-4 pb-24 pt-32 md:pb-28">
         <p className="eyebrow mb-3">Goodlife Fitness Club — Solapur</p>
         <h1 className="max-w-3xl text-5xl leading-none sm:text-6xl md:text-8xl">
@@ -217,13 +228,17 @@ function Hero() {
         {/* Stat strip */}
         <dl className="mt-12 grid grid-cols-2 gap-4 border-t border-border pt-6 md:grid-cols-4">
           <div>
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Verified Reviews</dt>
+            <dt className="text-xs uppercase tracking-widest text-muted-foreground">
+              Verified Reviews
+            </dt>
             <dd className="font-display text-3xl text-foreground md:text-4xl">
               <AnimatedCounter end={274} suffix="+" />
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Google Rating</dt>
+            <dt className="text-xs uppercase tracking-widest text-muted-foreground">
+              Google Rating
+            </dt>
             <dd className="font-display text-3xl text-foreground md:text-4xl">
               <AnimatedCounter end={4.9} decimals={1} />
               <span className="text-primary">★</span>
@@ -236,7 +251,9 @@ function Hero() {
             </dd>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-widest text-muted-foreground">Expert Trainers</dt>
+            <dt className="text-xs uppercase tracking-widest text-muted-foreground">
+              Expert Trainers
+            </dt>
             <dd className="font-display text-3xl text-foreground md:text-4xl">
               <AnimatedCounter end={2} />
             </dd>
@@ -318,11 +335,7 @@ function Equipment() {
           ))}
         </div>
       </div>
-      <EquipmentLightbox
-        slides={equipment}
-        index={lbIndex}
-        onClose={() => setLbIndex(-1)}
-      />
+      <EquipmentLightbox slides={equipment} index={lbIndex} onClose={() => setLbIndex(-1)} />
     </section>
   );
 }
@@ -372,7 +385,10 @@ function WhyGoodlife() {
         </h2>
         <ul className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4">
           {whyItems.map(({ icon: Icon, label }) => (
-            <li key={label} className="glass glow-hover flex min-h-24 flex-col items-center justify-center gap-2 rounded-lg p-4 text-center">
+            <li
+              key={label}
+              className="glass glow-hover flex min-h-24 flex-col items-center justify-center gap-2 rounded-lg p-4 text-center"
+            >
               <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
               <span className="font-display text-lg leading-tight tracking-wide">{label}</span>
             </li>
@@ -417,7 +433,9 @@ function Testimonials() {
             </blockquote>
             <figcaption className="mt-4">
               <span className="font-display text-lg tracking-wide">{t.name}</span>
-              <span className="block text-xs uppercase tracking-widest text-muted-foreground">{t.role}</span>
+              <span className="block text-xs uppercase tracking-widest text-muted-foreground">
+                {t.role}
+              </span>
             </figcaption>
           </figure>
         ))}
@@ -439,7 +457,9 @@ function Location() {
             <div className="flex items-start gap-3">
               <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
               <address className="not-italic leading-relaxed text-muted-foreground">
-                <span className="block font-display text-xl tracking-wide text-foreground">{BUSINESS_NAME}</span>
+                <span className="block font-display text-xl tracking-wide text-foreground">
+                  {BUSINESS_NAME}
+                </span>
                 {ADDRESS}
                 <span className="mt-1 block text-sm">Plus Code: {PLUS_CODE}</span>
               </address>
@@ -455,11 +475,13 @@ function Location() {
                 <Clock className="h-4 w-4 text-primary" aria-hidden="true" /> OPEN 24 HOURS
               </span>
               <span className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-2 font-display tracking-widest">
-                <Car className="h-4 w-4 text-primary" aria-hidden="true" /> FREE PARKING — GARAGE, LOT & STREET
+                <Car className="h-4 w-4 text-primary" aria-hidden="true" /> FREE PARKING — GARAGE,
+                LOT & STREET
               </span>
             </div>
             <p className="text-sm text-muted-foreground">
-              Appointment required · Membership required · Debit cards, Google Pay & NFC/contactless accepted
+              Appointment required · Membership required · Debit cards, Google Pay & NFC/contactless
+              accepted
             </p>
           </div>
           <div className="overflow-hidden rounded-lg border border-border">
