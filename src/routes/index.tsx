@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import { EquipmentLightbox } from "@/components/EquipmentLightbox";
 import {
   Phone,
   MessageCircle,
