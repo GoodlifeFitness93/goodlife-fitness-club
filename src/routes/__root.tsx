@@ -88,10 +88,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         property: "og:description",
         content:
-          "Train anytime at Solapur's 24-hour fitness destination. Advanced gym equipment, cardio machines, free weights and expert coaching.",
+          "Goodlife Fitness Club — Solapur's 24-hour gym. Advanced equipment, cardio, free weights & expert trainers. 4.9★ from 274 reviews. Free parking.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Goodlife Fitness Club | 24 Hour Gym in Solapur" },
+      { name: "twitter:description", content: "Goodlife Fitness Club — Solapur's 24-hour gym. Advanced equipment, cardio, free weights & expert trainers. 4.9★ from 274 reviews. Free parking." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79a5a8ba-17bb-461f-911b-13bd0f39f050/id-preview-c96b7947--ad82d430-37bd-4b43-81e3-2e1e23807cec.lovable.app-1783927322462.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/79a5a8ba-17bb-461f-911b-13bd0f39f050/id-preview-c96b7947--ad82d430-37bd-4b43-81e3-2e1e23807cec.lovable.app-1783927322462.png" },
     ],
     links: [
       {
