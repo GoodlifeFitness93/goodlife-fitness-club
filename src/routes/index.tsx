@@ -185,14 +185,17 @@ function Nav() {
 
 function Hero() {
   return (
-    <section id="top" className="relative flex min-h-svh items-end overflow-hidden">
+    <section
+      id="top"
+      className="relative flex min-h-[100vh] min-h-svh items-end overflow-hidden"
+    >
       <img
         src={heroImg}
         alt="Athlete performing a heavy deadlift in dramatic red and black gym lighting at Goodlife Fitness Club"
         width={1536}
         height={1024}
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        className="absolute inset-0 h-full w-full object-cover [object-position:center_top] md:[object-position:center]"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/20" aria-hidden="true" />
       <div className="relative mx-auto w-full max-w-6xl px-4 pb-24 pt-32 md:pb-28">
