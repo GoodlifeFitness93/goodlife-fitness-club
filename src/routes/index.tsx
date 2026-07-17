@@ -13,6 +13,9 @@ import {
   MonitorPlay,
   MapPin,
   Dumbbell,
+  Award,
+  Users,
+  ImageIcon,
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-athlete-new.png";
@@ -24,6 +27,15 @@ import cardioAsset from "@/assets/cardio.png";
 import functionalRigAsset from "@/assets/cardio entrance.png";
 import dumbbellsAsset from "@/assets/Dumbells.png";
 import terraceAsset from "@/assets/terrace section.png";
+
+import founderImg from "@/assets/founder-raghu-sir.jpg";
+import trainerArvindImg from "@/assets/trainer-arvind-sir.jpg";
+import trainerSheraImg from "@/assets/trainer-shera-sir.jpg";
+import trainerNitaImg from "@/assets/trainer-nita-mam.jpg";
+
+import transformation1Img from "@/assets/transformation-1.jpg";
+import transformation2Img from "@/assets/transformation-2.jpg";
+import transformation3Img from "@/assets/transformation-3.jpg";
 
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
@@ -255,7 +267,7 @@ function Hero() {
               Expert Trainers
             </dt>
             <dd className="font-display text-3xl text-foreground md:text-4xl">
-              <AnimatedCounter end={2} />
+              <AnimatedCounter end={3} />
             </dd>
           </div>
         </dl>
@@ -340,36 +352,164 @@ function Equipment() {
   );
 }
 
-function Trainers() {
+/* ---------- Coaching Section Data ---------- */
+
+const trainers = [
+  {
+    src: trainerArvindImg,
+    name: "Arvind Sir",
+    role: "Strength & Functional Training",
+  },
+  {
+    src: trainerSheraImg,
+    name: "Shera Sir",
+    role: "Bodybuilding & Conditioning",
+  },
+  {
+    src: trainerNitaImg,
+    name: "Nita Mam",
+    role: "Fitness Coach",
+  },
+];
+
+const transformations = [
+  {
+    src: transformation1Img,
+    alt: "Fitness transformation of GoodLife Fitness member trained by Arvind Sir — client progress photo 1 showing before and after results",
+  },
+  {
+    src: transformation2Img,
+    alt: "Fitness transformation of GoodLife Fitness member trained by Arvind Sir — client progress photo 2 showing before and after results",
+  },
+  {
+    src: transformation3Img,
+    alt: "Fitness transformation of GoodLife Fitness member trained by Arvind Sir — client progress photo 3 showing before and after results",
+  },
+];
+
+/* ---------- Coaching Section ---------- */
+
+function Coaching() {
   return (
     <section id="trainers" className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-      <p className="eyebrow mb-3">Coaching</p>
-      <h2 className="text-4xl md:text-6xl">
-        MEET YOUR <span className="text-primary">COACHES</span>
-      </h2>
-      <div className="mt-10 grid gap-4 md:grid-cols-2 md:gap-6">
-        <article className="glass glow-hover rounded-lg p-6 md:p-8">
-          <div className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/15">
-            <Dumbbell className="h-7 w-7 text-primary" aria-hidden="true" />
+      {/* ── PART 1: Founder ── */}
+      <div className="text-center">
+        <p className="eyebrow mb-3">Leadership</p>
+        <h2 className="text-4xl md:text-6xl">
+          MEET OUR <span className="text-primary">FOUNDER</span>
+        </h2>
+      </div>
+
+      <div className="mx-auto mt-10 max-w-md md:max-w-lg">
+        <article className="group relative overflow-hidden rounded-xl border border-border bg-card/60 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_32px_color-mix(in_oklab,var(--primary)_30%,transparent)]">
+          <div className="relative aspect-[3/4] overflow-hidden">
+            <img
+              src={founderImg}
+              alt="Raghu Sir — Founder of Goodlife Fitness Club Solapur"
+              loading="lazy"
+              className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent"
+              aria-hidden="true"
+            />
           </div>
-          <h3 className="font-display text-3xl">RAGHUNATH SIR</h3>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            The coach members have known for over a decade. Longtime members say they've trained
-            with Raghunath Sir for 10+ years — always ready to help with your workout and clear
-            every doubt on the floor, any time you train.
-          </p>
-        </article>
-        <article className="glass glow-hover rounded-lg p-6 md:p-8">
-          <div className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/15">
-            <Dumbbell className="h-7 w-7 text-primary" aria-hidden="true" />
+          <div className="relative px-6 pb-6 pt-0 -mt-16 text-center md:px-8 md:pb-8 md:-mt-20">
+            <div className="mx-auto mb-3 grid h-12 w-12 place-items-center rounded-full border border-primary/30 bg-card">
+              <Award className="h-6 w-6 text-primary" aria-hidden="true" />
+            </div>
+            <h3 className="font-display text-3xl tracking-wide md:text-4xl">RAGHU SIR</h3>
+            <p className="mt-1 font-display text-sm tracking-[0.2em] text-primary">FOUNDER</p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
+              Building stronger bodies and stronger minds through discipline, consistency and expert
+              coaching.
+            </p>
           </div>
-          <h3 className="font-display text-3xl">AMOL SIR</h3>
-          <p className="mt-3 leading-relaxed text-muted-foreground">
-            Consistently named in member reviews for hands-on workout guidance. Amol Sir keeps the
-            floor disciplined and every member progressing — from first session to long-term
-            transformation.
-          </p>
         </article>
+      </div>
+
+      {/* ── PART 2: Expert Trainers ── */}
+      <div className="mt-20 text-center md:mt-28">
+        <p className="eyebrow mb-3">The Team</p>
+        <h2 className="text-4xl md:text-6xl">
+          OUR EXPERT <span className="text-primary">TRAINERS</span>
+        </h2>
+      </div>
+
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6">
+        {trainers.map((t) => (
+          <article
+            key={t.name}
+            className="group relative overflow-hidden rounded-xl border border-border bg-card/60 transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_25%,transparent)]"
+          >
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <img
+                src={t.src}
+                alt={`${t.name} — Trainer at Goodlife Fitness Club Solapur`}
+                loading="lazy"
+                className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-card via-card/30 to-transparent"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="relative px-5 pb-5 pt-0 -mt-14 text-center md:px-6 md:pb-6">
+              <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-full border border-primary/30 bg-card">
+                <Dumbbell className="h-5 w-5 text-primary" aria-hidden="true" />
+              </div>
+              <h3 className="font-display text-2xl tracking-wide md:text-3xl">
+                {t.name.toUpperCase()}
+              </h3>
+              <p className="mt-1 font-display text-xs tracking-[0.2em] text-primary">TRAINER</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.role}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* ── PART 3: Transformations ── */}
+      <div className="mt-20 md:mt-28">
+        {/* Decorative divider */}
+        <div className="mx-auto mb-12 flex max-w-xs items-center gap-4">
+          <span
+            className="h-px flex-1 bg-gradient-to-r from-transparent to-primary/40"
+            aria-hidden="true"
+          />
+          <Dumbbell className="h-5 w-5 text-primary/60" aria-hidden="true" />
+          <span
+            className="h-px flex-1 bg-gradient-to-l from-transparent to-primary/40"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div className="text-center">
+          <p className="eyebrow mb-3">Results</p>
+          <h2 className="text-4xl md:text-6xl">
+            TRANSFORMATIONS BY <span className="text-primary">ARVIND SIR</span>
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+            Real people. Real transformations. Real results.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 md:grid-cols-3">
+          {transformations.map((t, idx) => (
+            <article
+              key={idx}
+              className="group relative overflow-hidden rounded-xl border border-border bg-card/60 transition-all duration-300 ease-out hover:border-primary/40 hover:shadow-[0_0_24px_color-mix(in_oklab,var(--primary)_25%,transparent)] hover:-translate-y-1"
+            >
+              <div className="relative w-full overflow-hidden">
+                <img
+                  src={t.src}
+                  alt={t.alt}
+                  loading="lazy"
+                  className="w-full h-auto block object-contain transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                />
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -550,7 +690,7 @@ function Index() {
       <Hero />
       <About />
       <Equipment />
-      <Trainers />
+      <Coaching />
       <WhyGoodlife />
       <Testimonials />
       <Location />
