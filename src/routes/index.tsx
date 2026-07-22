@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { EquipmentLightbox } from "@/components/EquipmentLightbox";
 import {
@@ -16,6 +16,8 @@ import {
   Award,
   Users,
   ImageIcon,
+  Menu,
+  X,
 } from "lucide-react";
 
 import heroImg from "@/assets/hero-athlete-new.png";
@@ -184,25 +186,188 @@ const testimonials = [
 
 /* ---------- Sections ---------- */
 
+const navItems = [
+  { label: "Home", href: "#top" },
+  { label: "About", href: "#about" },
+  { label: "Facilities", href: "#equipment" },
+  { label: "Memberships", href: "#why" },
+  { label: "Team", href: "#trainers" },
+  { label: "Transformations", href: "#transformations" },
+  { label: "Testimonials", href: "#reviews" },
+  { label: "Contact", href: "#location" },
+];
+
 function Nav() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState("top");
+
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.substring(1));
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveId(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [mobileMenuOpen]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.substring(1);
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      const navHeight = 64;
+      const elementPosition = targetEl.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
-    <header className="fixed inset-x-0 top-0 z-40 glass">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4">
-        <a href="#top" className="flex min-w-0 items-center gap-2">
-          <Dumbbell className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-          <span className="truncate font-display text-xl tracking-wider">
-            GOODLIFE <span className="text-primary">FITNESS CLUB</span>
-          </span>
-        </a>
-        <a
-          href={TEL_LINK}
-          className="hidden items-center gap-2 font-display text-lg tracking-widest text-foreground transition-colors hover:text-primary md:flex"
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 glass">
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+          <a
+            href="#top"
+            onClick={(e) => handleNavClick(e, "#top")}
+            className="flex min-w-0 items-center gap-2"
+          >
+            <Dumbbell className="h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+            <span className="truncate font-display text-xl tracking-wider">
+              GOODLIFE <span className="text-primary">FITNESS CLUB</span>
+            </span>
+          </a>
+
+          <nav
+            className="hidden items-center gap-4 xl:gap-6 font-display text-sm tracking-wider lg:flex"
+            aria-label="Desktop navigation"
+          >
+            {navItems.map((item) => {
+              const id = item.href.substring(1);
+              const isActive = activeId === id;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`transition-colors hover:text-primary ${
+                    isActive ? "text-primary font-bold" : "text-muted-foreground"
+                  }`}
+                >
+                  {item.label.toUpperCase()}
+                </a>
+              );
+            })}
+          </nav>
+
+          <a
+            href={TEL_LINK}
+            className="hidden items-center gap-2 font-display text-base tracking-widest text-foreground transition-colors hover:text-primary xl:flex"
+          >
+            <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
+            {PHONE_DISPLAY}
+          </a>
+
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation-menu"
+            className="flex h-12 w-12 items-center justify-center rounded-md border border-border bg-card/60 text-foreground transition-colors hover:border-primary/50 hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6 text-primary" aria-hidden="true" />
+            ) : (
+              <Menu className="h-6 w-6" aria-hidden="true" />
+            )}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Slide-in Navigation Overlay (Positioned relative to Viewport) */}
+      {mobileMenuOpen && (
+        <div
+          id="mobile-navigation-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setMobileMenuOpen(false);
+            }
+          }}
+          className="fixed inset-0 z-40 flex flex-col bg-background/98 backdrop-blur-2xl pt-20 pb-8 px-6 transition-all duration-300 lg:hidden overflow-y-auto"
         >
-          <Phone className="h-4 w-4 text-primary" aria-hidden="true" />
-          {PHONE_DISPLAY}
-        </a>
-      </div>
-    </header>
+          <div className="flex flex-col space-y-3 max-w-md mx-auto w-full">
+            {navItems.map((item) => {
+              const id = item.href.substring(1);
+              const isActive = activeId === id;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={`flex min-h-[52px] items-center rounded-xl px-5 py-3 font-display text-2xl tracking-widest transition-all ${
+                    isActive
+                      ? "bg-primary/15 text-primary border-l-4 border-primary font-bold pl-4 shadow-sm"
+                      : "text-foreground hover:bg-card/80 hover:text-primary"
+                  }`}
+                >
+                  {item.label.toUpperCase()}
+                </a>
+              );
+            })}
+
+            <div className="pt-6 mt-4 border-t border-border flex flex-col gap-3">
+              <a
+                href={TEL_LINK}
+                className="btn-cta-outline w-full flex items-center justify-center gap-2 min-h-[52px] text-lg"
+              >
+                <Phone className="h-5 w-5 text-primary" aria-hidden="true" /> CALL NOW
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -358,16 +523,19 @@ const trainers = [
   {
     src: trainerArvindImg,
     name: "Arvind Sir",
+    designation: "PERSONAL TRAINER",
     role: "Strength & Functional Training",
   },
   {
     src: trainerSheraImg,
     name: "Shera Sir",
+    designation: "TRAINER",
     role: "Bodybuilding & Conditioning",
   },
   {
     src: trainerNitaImg,
     name: "Nita Mam",
+    designation: "TRAINER",
     role: "Fitness Coach",
   },
 ];
@@ -461,7 +629,9 @@ function Coaching() {
               <h3 className="font-display text-2xl tracking-wide md:text-3xl">
                 {t.name.toUpperCase()}
               </h3>
-              <p className="mt-1 font-display text-xs tracking-[0.2em] text-primary">TRAINER</p>
+              <p className="mt-1 font-display text-xs tracking-[0.2em] text-primary">
+                {t.designation}
+              </p>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.role}</p>
             </div>
           </article>
@@ -469,7 +639,7 @@ function Coaching() {
       </div>
 
       {/* ── PART 3: Transformations ── */}
-      <div className="mt-20 md:mt-28">
+      <div id="transformations" className="mt-20 md:mt-28">
         {/* Decorative divider */}
         <div className="mx-auto mb-12 flex max-w-xs items-center gap-4">
           <span
